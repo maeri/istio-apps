@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  istio-test:
+    image: venkateshsrini3/istiotest
+    build:
+      context: .
+      dockerfile: istio-test/Dockerfile
+    #ports:
+    # - 5000:80
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    #labels:
+      #kompose.service.type: externalname

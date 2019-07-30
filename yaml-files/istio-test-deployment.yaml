@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-test-cluster-ip-service
+  namespace: istio-apps
+spec:
+  type: ClusterIP
+  selector:
+    app: istio-test-dep
+  ports:
+  - port: 5000
+    targetPort: 80
+    name: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-test-deployment
+  namespace: istio-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-test-dep
+  template:
+    metadata:
+      labels:
+        app: istio-test-dep
+    spec:
+      containers:
+      - name: istio-test
+        image: venkateshsrini3/istiotest
+        ports:
+        - containerPort: 80
