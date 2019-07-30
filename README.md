@@ -16,4 +16,6 @@ kubectl describe ns
 
 kubectl apply -f yaml-files/ -n istio-apps
 
-6. Works
+6. Works from browser
+
+http://192.168.64.2:31380/api/version
